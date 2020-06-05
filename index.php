@@ -2,11 +2,10 @@
 
 
 	spl_autoload_register(function($class_name){
-		include str_replace("\\", DIRECTORY_SEPARATOR,  $class_name) .".php";
+		include str_replace("\\", DIRECTORY_SEPARATOR, $class_name) .".php";
 	});
 
 	
-	$url = parse_url($_SERVER['REQUEST_URI']);
-	$components = explode("/", $url["path"]);
+	$components = explode("/", substr($_SERVER['REQUEST_URI'], 1));
 	
 	new \system\Routes($components);

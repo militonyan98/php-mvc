@@ -5,11 +5,9 @@ namespace system;
 class Routes {
 	
 	function __construct($components){
-		
 		if(!empty($components[0])){
-			$directory = "controllers".DIRECTORY_SEPARATOR.$components[0]."php";
+			$directory = "controllers".DIRECTORY_SEPARATOR.ucfirst($components[0].".php");
 			$ctrl_name = $components[0];
-
 			if(file_exists($directory)){
 				$class_name = "controllers\\".ucfirst($ctrl_name);
 				if(class_exists($class_name)){
@@ -42,19 +40,27 @@ class Routes {
 			}
 		}
 		else{
-			$default_class = "controllers\\Main";
-			if(class_exists($default_class)){
-				$default_obj = new $default_class;
-				if(method_exists($default_obj, "index")){
-					$default_obj->index();
+			$dir = "controllers".DIRECTORY_SEPARATOR."Main.php";
+			if(file_exists($dir)){
+				$default_class = "controllers\\Main";
+				if(class_exists($default_class)){
+					echo "class main";
+					$default_obj = new $default_class;
+					if(method_exists($default_obj, "index")){
+						$default_obj->index();
+					}
+					else{
+						echo "Method index() of class Main not found.";
+					}
 				}
 				else{
-					echo "Method index() of class Main not found.";
+					echo "Class Main not found.";
 				}
 			}
 			else{
-				echo "Class Main not found.";
+				echo "File $dir not found.";
 			}
+
 		}
 	}
 	
