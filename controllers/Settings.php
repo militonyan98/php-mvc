@@ -1,15 +1,20 @@
 <?php 
 
 namespace controllers;
+use system\Controller;
 
-class Settings{
+class Settings extends Controller{
 	public function __construct(){
-
+		parent:: __construct();
     }
 	
 	public function index(){
 		//Do something
 		echo "Settings index.";
+		$x = "test";
+		//$this->view->assign("x", $x);
+		$this->view->x=$x;
+		$this->view->render("settings");
 	}
 
 	public function general($p1=false, $p2=false){
