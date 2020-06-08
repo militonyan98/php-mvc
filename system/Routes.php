@@ -40,21 +40,20 @@ class Routes {
 			}
 		}
 		else{
-			$dir = "controllers".DIRECTORY_SEPARATOR."Main.php";
+			$dir = "controllers".DIRECTORY_SEPARATOR."Auth.php";
 			if(file_exists($dir)){
-				$default_class = "controllers\\Main";
+				$default_class = "controllers\\Auth";
 				if(class_exists($default_class)){
-					echo "class main";
 					$default_obj = new $default_class;
 					if(method_exists($default_obj, "index")){
 						$default_obj->index();
 					}
 					else{
-						echo "Method index() of class Main not found.";
+						echo "Method index() of class Auth not found.";
 					}
 				}
 				else{
-					echo "Class Main not found.";
+					echo "Class not found.";
 				}
 			}
 			else{
