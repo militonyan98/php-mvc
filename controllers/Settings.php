@@ -12,7 +12,7 @@ class Settings extends Controller{
 		echo "Settings index.";
 		$x = "test";
 		$this->view->x=$x;
-		$this->view->render("settings", true);
+		$this->view->render("settings");
 	}
 
 	public function general($p1=false, $p2=false){

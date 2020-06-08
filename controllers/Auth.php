@@ -1,16 +1,12 @@
 <?php
 
 namespace controllers; 
-use system\View;
+use system\Controller;
 
-class Auth {
-    protected $view;
-    public function __construct(){
-        $this->view = new View;
-    }
+class Auth extends Controller{
 
     public function index(){
-        $this->view->render("login", true);
+        $this->view->render("login", false);
     }
 
     public function login(){
@@ -18,6 +14,6 @@ class Auth {
     }
 
     public function register(){
-        $this->view->render("registration", true);
+        $this->view->render("registration");
     }
 }
