@@ -45,11 +45,11 @@ class Routes {
 				$default_class = "controllers\\Auth";
 				if(class_exists($default_class)){
 					$default_obj = new $default_class;
-					if(method_exists($default_obj, "login")){
+					if(method_exists($default_obj, "index")){
 						$default_obj->index();
 					}
 					else{
-						echo "Method login of class Auth not found.";
+						echo "Method index() of class Auth not found.";
 					}
 				}
 				else{

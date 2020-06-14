@@ -1,6 +1,6 @@
 <?php
 namespace system;
-
+use controllers\Auth;
 class View {
 	public function render($view_file, $include_layout=true){
 		
@@ -8,12 +8,10 @@ class View {
             echo "File $view_file not found.";
         }else{
             if($include_layout){
-                include "views/header.php";
                 include "views/layout.php";
-                include "views/footer.php";
             }
             else{
-                include "views/layout.php";
+                include "views/".$view_file.".php";
             }
         }
 		

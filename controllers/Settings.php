@@ -4,9 +4,6 @@ namespace controllers;
 use system\Controller;
 
 class Settings extends Controller{
-	// public function __construct(){
-	// 	parent:: __construct();
-    // }
 	
 	public function index(){
 		echo "Settings index.";
