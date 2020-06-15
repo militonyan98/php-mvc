@@ -13,6 +13,7 @@ class Auth extends Controller{
         $valid=true;
 
         if($_SERVER["REQUEST_METHOD"] == "POST"){
+            session_unset();
             if(empty($_POST["email"])){
                 $valid=false;
                 $emailError = "Email is required";
@@ -20,6 +21,7 @@ class Auth extends Controller{
             else{
                 $email = $_POST["email"];
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                    $valid = false;
                     $emailError = "Invalid email format";
                 }
             }
@@ -32,7 +34,6 @@ class Auth extends Controller{
                 $password = $_POST["password"];
             }
 
-            echo $valid;
             if($valid){
                 $login = $user->login($email, $password);
                

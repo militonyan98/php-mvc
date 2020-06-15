@@ -4,7 +4,7 @@ namespace models;
 use system\Model;
 
 class User extends Model{
-
+    public $userInfo;
 	public function login($email, $password){
         $email = $this->user_database->escapeString($email);
         $passwordHash = md5($password);
@@ -28,7 +28,7 @@ class User extends Model{
     }
 
     public function getUserInfo($id){
-        $this->user_database->select("SELECT * FROM user WHERE `user_id` = $id", false);
+        $this->userInfo = $this->user_database->select("SELECT `user_id`, f_name, l_name, gender, email, avatar FROM user WHERE `user_id` = $id", false)["data"];
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace controllers;
 use system\Controller;
+use models\User;
 
 class Profile extends Controller{
 
@@ -14,6 +15,9 @@ class Profile extends Controller{
     }
     
     public function index(){
+        $this->user = new User();
+        $this->user->getUserInfo($_SESSION["id"]);
+        $this->view->user = $this->user;
         $this->view->render("profile");
     }
     

@@ -17,7 +17,6 @@ class Database {
 
     public function select($query, $needAll = true){
         $data = $this->connection->query($query);
-        echo $query;
         $output = ["error" => false, "msg" => "", "data" => []];
         if($data){
             if($needAll){
@@ -96,7 +95,7 @@ class Database {
     }
 
     public function escapeString($data){
-        $this->connection->real_escape_string($data);
+        return $this->connection->real_escape_string($data);
     }
     
     private function error($error){
