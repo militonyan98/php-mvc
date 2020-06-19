@@ -6,7 +6,7 @@ use Mysqli;
 
 class Database {
     private $connection;
-    function __construct($host=DBConfig::HOST, $username=DBConfig::USERNAME, $password="", $name=""){
+    function __construct($host=DBConfig::HOST, $username=DBConfig::USERNAME, $password=DBConfig::PASSWORD, $name=DBConfig::NAME){
         $this->connection = new Mysqli($host, $username, $password, $name);
         if ($this->connection->connect_errno) {
             $this->error("Failed to connect to the database: ".$this->connection->connect_error);

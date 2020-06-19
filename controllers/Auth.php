@@ -3,20 +3,19 @@
 namespace controllers; 
 use system\Controller;
 use models\User;
+use helpers\FlashHelper;
 
 class Auth extends Controller{
-       
 
     public function index(){
-        $user = new User;
-        $email = $emailError = $password = $passwordError = $errorMsg = "";
+        $email = $emailError = $password = $passwordError = "";
         $valid=true;
 
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             session_unset();
             if(empty($_POST["email"])){
                 $valid=false;
-                $emailError = "Email is required";
+                FlashHelper::setFlash("emailError", "Email is required");
             }
             else{
                 $email = $_POST["email"];
@@ -35,10 +34,11 @@ class Auth extends Controller{
             }
 
             if($valid){
+                $user = new User;
                 $login = $user->login($email, $password);
                
                 if(!$login["error"]){
-                    $getUser = $login["data"][0];
+                    $getUser = $login["data"];
                     if(empty($_SESSION['id'])){
                         echo("session id is empty");
                         $_SESSION['id']=$getUser['user_id'];
@@ -69,7 +69,6 @@ class Auth extends Controller{
 
 
     public function registration(){
-        $user = new User;
         $fname = $lname = $gender = $email = $emailErr = $password = $passwordConfirm = "";
         $fnameErr = $lnameErr = $genderErr = $passwordErr = $passwordConfirmErr = "";
         $errorMsg = "";
@@ -110,9 +109,10 @@ class Auth extends Controller{
                 $emailErr = "Email is required";
             }
             else{
+                $user = new User;
                 $email = $_POST["email"];
                 $emailQuery = "SELECT email FROM user WHERE email='$email'";
-                $getEmail = $user->user_database->select($emailQuery)["data"][0];
+                $getEmail = $user->db->select($emailQuery)["data"][0];
                 if((!filter_var($email, FILTER_VALIDATE_EMAIL)) || !empty($getEmail['email'])) {
                     $emailErr = "Invalid email format";
                     $valid = false;
@@ -141,19 +141,19 @@ class Auth extends Controller{
 
 
             if($valid){
-
+                $user = new User;
                 $reg = $user->registration($fname, $lname, $gender, $email, $password);
 
                 if($reg){
                     header('Location: /auth/index');
                 }
                 else{
-                    $errorMsg = $errorMsg."query error performed"."\r\n".$this->user->user_database->error();
-                    header('Location: /error-page');
+                    $errorMsg = $errorMsg."query error performed"."\r\n".$this->user->db->error();
+                    header('Location: /error');
                 };
             }
             else{
-                header('Location: index');
+                header('Location: /');
             }
 
             $_SESSION['error'] = $errorMsg;

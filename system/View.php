@@ -1,6 +1,6 @@
 <?php
 namespace system;
-use controllers\Auth;
+use helpers\FlashHelper;
 class View {
 	public function render($view_file, $include_layout=true){
 		

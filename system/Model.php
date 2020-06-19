@@ -4,8 +4,8 @@ namespace system;
 use system\Database;
 
 class Model {
-    public $user_database;
+    public $db;
     public function __construct(){
-        $this->user_database = new Database("localhost", "root", "", "users");
+        $this->db = new Database();
     }
 }
