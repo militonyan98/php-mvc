@@ -24,4 +24,8 @@ class Profile extends Controller{
     public function profile(){
         return $this->index();
     }
+
+    public function upload_avatar(){
+    
+    }
 }

@@ -7,7 +7,8 @@
     <body style="margin: 20px; padding: 30px;">  
         <div class="row">
         <div class="col-md-10"><h3>Personal Information | <?= $this->user->userInfo['f_name']." ".$this->user->userInfo['l_name']?></h3></div>
-        <div class="col-md-2"><a href="logout.php" class="btn btn-info">Log Out</a></div>
+        <div class="col-md-1"><a href="/chat" class="btn btn-info">Messages</a></div>
+        <div class="col-md-1"><a href="/logout" class="btn btn-info">Log Out</a></div>
         </div>
         <br></br>
         <table class="table">
@@ -35,7 +36,7 @@
                 <label class="custom-file-label">Choose Avatar...</label>
             </div>
             <br></br>
-            <button type="submit" name="submit" value="Submit" class="btn btn-primary">Change Avatar</button>
+            <input type="submit" name="submit" value="Change Avatar" class="btn btn-primary">
         </form>
     </body>
 </html>

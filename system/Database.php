@@ -37,8 +37,6 @@ class Database {
     
     public function insert($table, $data){
         $keys = $values = "";
-        $dataCount = count($data);
-        $i=0;
         foreach($data as $key => $value){
             $keys .=  "`".$this->connection->real_escape_string($key)."`".", ";
             $values .= "'".$this->connection->real_escape_string($value)."'".", ";
