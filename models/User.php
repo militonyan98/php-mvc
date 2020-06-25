@@ -33,4 +33,9 @@ class User extends Model{
         $this->userInfo = $selectUser["data"];
     }
 
+    public function getFriends($id){
+        $selectFriends = $this->db->select(("SELECT `user_id`, f_name, l_name, avatar FROM user WHERE `user_id`<>$id"));
+        $this->friendList = $selectFriends["data"];
+    }
+
 }
