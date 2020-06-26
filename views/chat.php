@@ -1,14 +1,10 @@
-<?php
-    for($i = 0; $i<count($this->messages); $i++){
-        $currentMessage = $this->messages[$i];
-?>
 <div>
-    <div><?= $currentMessage["body"]?></div>
-    <br></br>
+	<?php foreach($this->messages as $msg): ?>
+		<div>
+			<b><?=$msg['f_name']?></b>: <?=$msg['body']?>
+		</div>
+	<?php endforeach; ?>   
 </div>
-<?php
-    };
-?>
 
 <input id="message" type="textarea">
 <input id="submitMsg" type="submit">

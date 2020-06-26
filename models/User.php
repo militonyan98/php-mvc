@@ -38,4 +38,8 @@ class User extends Model{
         $this->friendList = $selectFriends["data"];
     }
 
+    public function setAvatar($userid, $image){
+        $this->db->update("user", ["avatar"=>$image], "`user_id` = $userid");
+    }
+
 }

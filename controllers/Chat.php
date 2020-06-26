@@ -14,7 +14,7 @@ class Chat extends Controller {
         $this->message = new Message;
     }
 
-    public function conversations($to_id){
+    public function index($to_id){
         $this->view->target = $to_id;
         $from_id = $_SESSION["id"];
         $selectedData = $this->message->getMessage($from_id, $to_id);
@@ -23,6 +23,10 @@ class Chat extends Controller {
             // $this->message->seen();
         }
         $this->view->render("chat");
+    }
+
+    public function conversations($to_id){
+        return $this->index($to_id);
     }
 
     public function sendMessage(){
