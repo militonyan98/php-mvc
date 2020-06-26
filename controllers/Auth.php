@@ -152,4 +152,9 @@ class Auth extends Controller{
 
         $this->view->render("registration");
     }
+
+    public function logout(){
+        unset($_SESSION["id"]);
+        header("Location: /");
+    }
 }
