@@ -34,7 +34,7 @@ if($this->user->userInfo["user_id"]!==$_SESSION["id"]){?>
                         echo helpers\FlashHelper::getFlash("imageErr");
                     ?>
                     <?php } else{ ?>
-                    <td><div style="width: 100px;"><img class="img-thumbnail" src="<?=$this->user->userInfo['avatar']?>"></div></td> 
+                    <td><div style="width: 100px;"><img class="img-thumbnail" src="/<?=$this->user->userInfo['avatar']?>"></div></td> 
                     <?php } ?>
                     <td> <?= $this->user->userInfo['gender']; ?></td>
                     <td><?= $this->user->userInfo['email']; ?></td>

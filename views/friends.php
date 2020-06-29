@@ -10,7 +10,7 @@
         <div>
             <?php foreach($this->user->friendList as $friend): ?>
                 <div class="row" style="margin: 20px 20px">
-                    <div class="col-md-1" style="width: 100px;"><a href="/profile/user/<?=$friend["user_id"]?>"><img class="img-thumbnail" src="<?=$friend['avatar']?>"></a></div>
+                    <div class="col-md-1" style="width: 100px;"><a href="/profile/user/<?=$friend["user_id"]?>"><img class="img-thumbnail" src="../<?=$friend['avatar']?>"></a></div>
                     <div><a href="/profile/user/<?=$friend["user_id"]?>"><?= $friend['f_name']." ".$friend['l_name'];?></a></div>
                 </div>
             <?php endforeach; ?>   

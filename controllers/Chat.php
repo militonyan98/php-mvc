@@ -17,6 +17,11 @@ class Chat extends Controller {
     public function index($to_id){
         $this->view->target = $to_id;
         $from_id = $_SESSION["id"];
+        $history = $this->message->getHistory($from_id);
+        if($history){
+            $this->view->history = $history["data"];
+            // $this->message->seen();
+        }
         $selectedData = $this->message->getMessage($from_id, $to_id);
         if($selectedData){
             $this->view->messages = $selectedData["data"];
@@ -36,6 +41,19 @@ class Chat extends Controller {
         return $this->sendMessageHelper($from_id, $to_id, $message);
     }
 
+    public function refreshMessages()
+    {
+        $from_id = $_SESSION["id"];
+        $to_id = $_POST["to_id"];
+        $last_id = $_POST["last_id"];
+        $messages= $this->message->getNewMessages($from_id,$to_id,$last_id);
+        if($messages)
+        {
+            echo json_encode($messages["data"]);
+        }
+        
+    }
+
     public function sendMessageHelper($from_id, $to_id, $message){
         $data = [
             "from_id" => $from_id,
@@ -49,6 +67,7 @@ class Chat extends Controller {
         ];
         echo json_encode($response);
     }
+
 
 
 }

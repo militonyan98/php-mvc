@@ -30,16 +30,12 @@ class Profile extends Controller{
     public function avatar(){
 
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
-            echo "in post";
             $target_dir = "profile-pictures/";
             $target_file = $target_dir.basename($_FILES["image"]["name"]);
             $isUploaded=1;
             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-            // echo $imageFileType;
             $target_file = $target_dir.basename((microtime(true)*10000).".".$imageFileType);
-            // echo $target_file;
             if(isset($_POST["image"])){
-                echo "file is set";
                 $check = getimagesize($_FILES["image"]["tmp_name"]);
                 if($check === false){
                 FlashHelper::setFlash("imageErr", "File is not an image.");

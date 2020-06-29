@@ -17,4 +17,8 @@ class View {
 		
     }
 
+    function renderStylesheet($link){
+        echo "<link rel='stylesheet' href='$link'>";
+    }
+
 }
