@@ -47,6 +47,7 @@
                             <div class="received_withd_msg">
                                 <p><?=$msg['body'];?></p>
                                 <span class="time_date"> <?=$msg['date'];?></span>
+                                <span class="seen" style="font-size: 0.85em; color: royalblue"><?=$msg["seen"]=1?"seen":""?></span>
                             </div>
                         </div>
                     </div>
@@ -55,6 +56,7 @@
                         <div class="sent_msg">
                             <p><?=$msg['body'];?></p>
                             <span class="time_date"><?=$msg['date'];?></span>
+                            <span class="seen" style="font-size: 0.85em; color: royalblue"><?=$msg["seen"]=1?"seen":""?></span>
                         </div>
                     </div>
                 <?php }

@@ -28,13 +28,13 @@ class Message extends Model {
             ,true);
     }
 
-    public function seen($msgid){
-        $this->db->update("messages", ["seen" => true], "`id` = $msgid");
+    public function seen($from_id, $to_id){
+        return $this->db->update("messages", ["seen" => true], "(from_id = $from_id AND to_id = $to_id) OR (from_id = $to_id AND to_id = $from_id)");
     }
 
     public function getHistory($current_user_id){
         return $this->db->select("SELECT DISTINCT results.id, results.avatar, results.f_name 
-                                FROM (
+                                    FROM (
                                     SELECT DISTINCT m.to_id as id, u.avatar, u.f_name
                                     FROM messages as m 
                                     LEFT JOIN user as u ON u.user_id=m.to_id 

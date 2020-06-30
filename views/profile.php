@@ -58,7 +58,6 @@ if($this->user->userInfo["user_id"]!==$_SESSION["id"]){?>
         <a class="btn btn-primary" href="" class="btn btn-info">Send a message</a> <!-- send to chats -->
         <?php
             };
-            var_dump($this->user->userInfo);
         ?>
         
     </body>

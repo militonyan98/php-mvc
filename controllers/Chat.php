@@ -20,12 +20,11 @@ class Chat extends Controller {
         $history = $this->message->getHistory($from_id);
         if($history){
             $this->view->history = $history["data"];
-            // $this->message->seen();
         }
         $selectedData = $this->message->getMessage($from_id, $to_id);
         if($selectedData){
             $this->view->messages = $selectedData["data"];
-            // $this->message->seen();
+            $this->message->seen($from_id, $to_id);
         }
         $this->view->render("chat");
     }
@@ -46,7 +45,8 @@ class Chat extends Controller {
         $from_id = $_SESSION["id"];
         $to_id = $_POST["to_id"];
         $last_id = $_POST["last_id"];
-        $messages= $this->message->getNewMessages($from_id,$to_id,$last_id);
+        $messages=$this->message->getNewMessages($from_id,$to_id,$last_id);
+        $this->message->seen($from_id, $to_id);
         if($messages)
         {
             echo json_encode($messages["data"]);
